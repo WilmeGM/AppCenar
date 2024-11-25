@@ -1,0 +1,23 @@
+<!-- views/auth/login.hbs -->
+<main class="form-signin">
+  <form action="/login" method="POST">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" />
+      <label for="floatingInput">Username</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+    <a href="/signup" class="w-100 btn btn-lg btn-success margin-top-2">Sign up</a>
+    <a href="/signup-commerce" class="w-100 btn btn-lg btn-info margin-top-2">Sign up for Commerce</a>
+    <a href="/" class="w-100 btn btn-lg btn-warning margin-top-2">Back</a>
+  </form>
+</main>

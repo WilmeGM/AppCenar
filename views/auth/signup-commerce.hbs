@@ -1,0 +1,57 @@
+<!-- views/auth/signup-commerce.hbs -->
+<main class="form-signin">
+  <form action="/signup-commerce" method="POST" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 fw-normal">Create a Commerce Account</h1>
+
+    <div class="form-floating">
+      <label for="floatingName">Commerce Name</label>
+      <input required type="text" class="form-control" name="name" id="floatingName" placeholder="Commerce Name" />
+    </div>
+
+    <div class="form-floating">
+      <label for="floatingPhone">Phone</label>
+      <input required type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone" />
+    </div>
+
+    <div class="form-floating">
+      <label for="floatingEmail">Email</label>
+      <input required type="email" class="form-control" name="email" id="floatingEmail" placeholder="Email" />
+    </div>
+
+    <div class="form-floating">
+      <label for="floatingLogo">Logo</label>
+      <input required type="file" class="form-control" name="image" id="floatingLogo" />
+
+    </div>
+
+    <div class="form-floating">
+      <label for="floatingOpeningTime">Opening Time</label>
+      <input required type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time" />
+    </div>
+
+    <div class="form-floating">
+      <label for="floatingClosingTime">Closing Time</label>
+      <input required type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time" />
+    </div>
+
+    <div class="form-floating">
+      <select required name="type" id="floatingCommerceType">
+        <option value="">Select a commerce type</option>
+      </select>
+    </div>
+
+    <div class="form-floating">
+      <label for="password">Password</label>
+      <input required type="password" class="form-control" name="password" id="password" placeholder="Password" />
+    </div>
+
+    <div class="form-floating">
+      <label for="confirmPassword">Confirm Password</label>
+      <input required type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+        placeholder="Confirm Password" />
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Create Commerce</button>
+    <a href="/login" class="w-100 btn btn-lg btn-warning margin-top-2">Back</a>
+  </form>
+</main>
