@@ -38,7 +38,7 @@ const Admin = sequelize.define("admins", {
   isActive: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: true,
   },
   resetToken: {
     type: Sequelize.STRING,

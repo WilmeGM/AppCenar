@@ -1,0 +1,55 @@
+{{! views/admin/commerce-list.hbs }}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Commerce List</h1>
+
+    {{#if thereAreCommerces}}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Logo</th>
+                <th>Orders</th>
+                <th>Phone</th>
+                <th>Openning time</th>
+                <th>Closing time</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each commerces}}
+            <tr>
+                <td>{{this.username}}</td>
+                <td>
+                    <img src="{{this.logo}}" alt="{{this.username}} logo" class="img-fluid"
+                        style="max-width: 100px; height: auto;" />
+                </td>
+                <td>{{../ordersCount}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.openingTime}}</td>
+                <td>{{this.closingTime}}</td>
+                <td>{{this.email}}</td>
+                <td>
+                    {{#if this.isActive}}
+                    <form action="/inactivate-commerce" method="post" class="d-inline">
+                        <input type="hidden" name="commerceId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-danger btn-sm">Inactivate</button>
+                    </form>
+                    {{else}}
+                    <form action="/activate-commerce" method="post" class="d-inline">
+                        <input type="hidden" name="commerceId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-success btn-sm">Activate</button>
+                    </form>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        No commerces found.
+    </div>
+    {{/if}}
+</div>

@@ -8,7 +8,7 @@ const Commerce = sequelize.define("commerce", {
     allowNull: false,
     primaryKey: true,
   },
-  name: {
+  username: {
     type: Sequelize.STRING,
     allowNull: false,
   },

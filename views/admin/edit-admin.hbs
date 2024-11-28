@@ -1,0 +1,47 @@
+{{! views/admin/edit-admin.hbs }}
+
+<main class="container">
+    <form action="/edit-admin" method="post">
+        <h1 class="h3 mb-3 fw-normal">Create an admin</h1>
+
+        <input type="hidden" name="adminId" value="{{admin.id}}">
+
+        <div class="pb-3">
+            <label for="name">Name: </label>
+            <input value="{{admin.name}}" type="text" class="form-control" name="name" placeholder="Name" id="name" required />
+        </div>
+
+        <div class="pb-3">
+            <label for="lastname">Last Name:</label>
+            <input value="{{admin.lastName}}" id="lastname" type="text" class="form-control" name="lastName" placeholder="Last Name" required />
+        </div>
+
+        <div class="pb-3">
+            <label for="idCard">Id Card: </label>
+            <input value="{{admin.idCard}}" id="idCard" type="text" class="form-control" name="idCard" placeholder="Id Card" required />
+        </div>
+
+        <div class="pb-3">
+            <label for="email">Email: </label>
+            <input value="{{admin.email}}" id="email" type="email" class="form-control" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="pb-3">
+            <label for="username">Username</label>
+            <input value="{{admin.username}}" type="text" class="form-control" name="username" id="username" placeholder="Username" required />
+        </div>
+
+        <div class="pb-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+        </div>
+
+        <div class="pb-3">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" />
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
+        <a href="/admin-list" class="w-100 btn btn-lg btn-warning margin-top-2">Back</a>
+    </form>
+</main>

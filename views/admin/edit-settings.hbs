@@ -1,0 +1,17 @@
+{{! views/admin/edit-settings }}
+
+<main class="form-signin w-100 m-auto mt-5">
+    <form action="/edit-settings" method="post">
+        <h1 class="h3 mb-3 fw-normal text-center">Edit config</h1>
+
+        <div class="form-floating mb-3">
+            <input name="itbisId" type="hidden" value="{{config.id}}">
+            <input value="{{config.itbis}}" type="number" class="form-control" name="itbis" id="floatingInput"
+                placeholder="Enter the new ITBIS" required />
+            <label for="floatingInput">ITBIS</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Update</button>
+        <a href="/settings" class="w-100 btn btn-lg btn-warning">Back</a>
+    </form>
+</main>

@@ -1,57 +1,58 @@
-<!-- views/auth/signup-commerce.hbs -->
-<main class="form-signin">
+{{! Signup Commerce View --}}
+<main class="form-signin w-100 m-auto mt-5">
   <form action="/signup-commerce" method="POST" enctype="multipart/form-data">
-    <h1 class="h3 mb-3 fw-normal">Create a Commerce Account</h1>
+    <h1 class="h3 mb-3 fw-normal text-center">Create a Commerce Account</h1>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingName">Commerce Name</label>
-      <input required type="text" class="form-control" name="name" id="floatingName" placeholder="Commerce Name" />
+      <input type="text" class="form-control" name="name" id="floatingName" placeholder="Commerce Name" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingPhone">Phone</label>
-      <input required type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone" />
+      <input type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingEmail">Email</label>
-      <input required type="email" class="form-control" name="email" id="floatingEmail" placeholder="Email" />
+      <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="Email" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingLogo">Logo</label>
-      <input required type="file" class="form-control" name="image" id="floatingLogo" />
-
+      <input type="file" class="form-control" name="image" id="floatingLogo" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingOpeningTime">Opening Time</label>
-      <input required type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time" />
+      <input type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="floatingClosingTime">Closing Time</label>
-      <input required type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time" />
+      <input type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time" required />
     </div>
 
-    <div class="form-floating">
-      <select required name="type" id="floatingCommerceType">
+    <div class="mb-3">
+      <select class="form-control" name="typeId" id="floatingCommerceType" required>
         <option value="">Select a commerce type</option>
+        {{#each commerceTypes}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
       </select>
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="password">Password</label>
-      <input required type="password" class="form-control" name="password" id="password" placeholder="Password" />
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password" required />
     </div>
 
-    <div class="form-floating">
+    <div class="mb-3">
       <label for="confirmPassword">Confirm Password</label>
-      <input required type="password" class="form-control" name="confirmPassword" id="confirmPassword"
-        placeholder="Confirm Password" />
+      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required />
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Create Commerce</button>
-    <a href="/login" class="w-100 btn btn-lg btn-warning margin-top-2">Back</a>
+    <a href="/login" class="w-100 btn btn-lg btn-warning mt-2">Back</a>
   </form>
 </main>

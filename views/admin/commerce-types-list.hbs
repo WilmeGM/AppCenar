@@ -1,0 +1,50 @@
+{{! views/admin/commerce-types-list.hbs }}
+
+<div class="mb-4">
+    <a class="btn btn-success" href="/save-commerce-type">
+        + Save Commerce Type
+    </a>
+</div>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Commerce types List</h1>
+
+    {{#if thereAreCommerceTypes}}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Icon</th>
+                <th>Description</th>
+                <th>Commerces count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each commerceTypes}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>
+                    <img src="{{this.icon}}" alt="{{this.name}} logo" class="img-fluid"
+                        style="max-width: 100px; height: auto;" />
+                </td>
+                <td>{{this.description}}</td>
+                <td>{{this.commercesCount}}</td>
+                <td>
+                    <form action="/delete-commerce-type" method="post" class="d-inline">
+                        <input type="hidden" name="commerceTypeId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="confirmDelete(event)">Delete</button>
+                    </form>
+                    <a href="/edit-commerce-type/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        No commerce types found.
+    </div>
+    {{/if}}
+</div>

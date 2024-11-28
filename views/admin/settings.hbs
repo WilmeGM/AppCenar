@@ -1,0 +1,32 @@
+{{! views/admin/settings.hbs }}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Delivery List</h1>
+
+    {{#if thereAreItbis}}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>ITBIS</th>
+                <th>UpdateAt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each itbis}}
+            <tr>
+                <td>{{this.itbis}}%</td>
+                <td>{{this.updatedAt}}</td>
+                <td>
+                    <a href="/edit-settings/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        No itbis found.
+    </div>
+    {{/if}}
+</div>

@@ -1,4 +1,9 @@
+//app.js
 //@ts-nocheck
+
+//#region Requires
+
+//#region Packages Requires
 const express = require("express");
 const path = require("path");
 const { engine } = require("express-handlebars");
@@ -6,16 +11,54 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const session = require("express-session");
 const flash = require("connect-flash");
+//#endregion
 
+//#region Models Requires
+const Admin = require("./models/admin/admins");
+const Configuration = require("./models/admin/configuration");
+const CommerceType = require("./models/admin/commerceTypes");
+
+const Category = require("./models/commerce/categories");
+const Commerce = require("./models/commerce/commerces");
+const Product = require("./models/commerce/products");
+
+const Customer = require("./models/customer/customer");
+const Address = require("./models/customer/directions");
+const Favorite = require("./models/customer/directions");
+const Order = require("./models/customer/orders");
+
+const Delivery = require("./models/delivery/delivery");
+const OrderProduct = require("./models/OrderProduct/orderProduct");
+//#endregion
+
+//#region Contexts Requires
 const sequelize = require("./contexts/appContexts");
+//#endregion
 
-const puerto = 5000;
-const app = express();
-
-const homeRouter = require("./routers/homeRouter");
+//#region Routers Requires
 const authRouter = require("./routers/authRouter");
+const adminRouter = require("./routers/adminRouter");
+const customerRouter = require("./routers/customerRouter");
+const deliveryRouter = require("./routers/deliveryRouter");
+const commerceRouter = require("./routers/commerceRouter");
+//#endregion
 
+//#region Controllers Requires
 const errorController = require("./controllers/errorController");
+//#endregion
+
+//#region Seeds requires
+const createAdminSeed = require("./seeds/adminSeed");
+const createDefaultConfiguration = require("./seeds/configurationSeed");
+//#endregion
+
+//#region Helpers requires
+const eq = require("./helpers/eq");
+//#endregion
+
+//#endregion
+
+const app = express();
 
 app.engine(
   "hbs",
@@ -23,6 +66,9 @@ app.engine(
     layoutsDir: "views/layouts/",
     defaultLayout: "main-layout",
     extname: "hbs",
+    helpers: {
+      eq: eq
+    }
   })
 );
 
@@ -43,55 +89,30 @@ const fileStorage = multer.diskStorage({
 app.use(multer({ storage: fileStorage }).single("image"));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use(session({ secret: "anything", resave: true, saveUninitialized: false }));
 
 app.use(flash());
 
 app.use((req, res, next) => {
-  if (!req.session) {
-    return next();
-  }
-  if (!req.session.user) {
-    return next();
-  }
-  User.findByPk(req.session.user.id)
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-app.use((req, res, next) => {
   const errors = req.flash("errors");
+  const oks = req.flash("success");
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.errorMessages = errors;
   res.locals.hasErrorMessages = errors.length > 0;
+  res.locals.okMessages = oks;
+  res.locals.hasOkMessages = oks.length > 0;
+  res.locals.role = req.session.role;
   next();
 });
 
+app.use(adminRouter);
+app.use(commerceRouter);
+app.use(deliveryRouter);
+app.use(customerRouter);
 app.use(authRouter);
-app.use(homeRouter);
 app.use(errorController.get404);
-
-const Admin = require("./models/admin/admins");
-const Configuration = require("./models/admin/configuration");
-const CommerceType = require("./models/admin/commerceType");
-
-const Category = require("./models/commerce/categorys");
-const Commerce = require("./models/commerce/commerces");
-const Product = require("./models/commerce/products");
-
-const Customer = require("./models/customer/customer");
-const Address = require("./models/customer/directions");
-const Favorite = require("./models/customer/directions");
-const Order = require("./models/customer/orders");
-
-const Delivery = require("./models/delivery/delivery");
-const OrderProduct = require("./models/OrderProduct/orderProduct");
 
 //Customer - Address 1:n
 Customer.hasMany(Address);
@@ -157,7 +178,9 @@ Commerce.belongsTo(CommerceType);
 sequelize
   .sync()
   .then(() => {
-    app.listen(puerto, () => {
+    createAdminSeed();
+    createDefaultConfiguration();
+    app.listen(5000, () => {
       console.log("Server is running on port 5000");
     });
   })

@@ -1,1 +1,79 @@
-<h1>admin home</h1>
+{{! views/admin/index.hbs }}
+
+<div class="container mt-5">
+  <h1 class="text-center">Admin Home</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <p>Welcome to the admin section of the app. You can manage users, settings, etc.</p>
+      <a href="/customer-list" class="btn btn-primary">Customers</a>
+      <a href="/delivery-list" class="btn btn-warning">Deliveries</a>
+      <a href="/commerce-list" class="btn btn-success">Commerce</a>
+      <a href="/commerce-types-list" class="btn btn-info">Manage Types of Commerces</a>
+      <a href="/admin-list" class="btn btn-dark">Manage Admins</a>
+      <a href="/settings" class="btn btn-secondary">Settings</a>
+    </div>
+  </div>
+
+  <h2 class="mt-5 text-center">Dashboard Statistics</h2>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Orders</h5>
+          <p class="card-text">
+            <strong>Total:</strong> totalOrders <br>
+            <strong>Today's:</strong> todayOrders
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Commerces</h5>
+          <p class="card-text">
+            <strong>Active:</strong> {{activeCommerces}}<br>
+            <strong>Inactive:</strong> {{inactiveCommerces}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Customers</h5>
+          <p class="card-text">
+            <strong>Active:</strong> {{inactiveCustomers}}<br>
+            <strong>Inactive:</strong> {{activeCustomers}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Deliveries</h5>
+          <p class="card-text">
+            <strong>Active:</strong> {{inactiveDeliveries}}<br>
+            <strong>Inactive:</strong> {{activeDeliveries}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Products</h5>
+          <p class="card-text">
+            <strong>Total Created:</strong> totalProducts
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

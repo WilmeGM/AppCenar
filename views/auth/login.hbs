@@ -1,23 +1,32 @@
-<!-- views/auth/login.hbs -->
-<main class="form-signin">
+{{! Login View --}}
+<main class="form-signin w-100 m-auto mt-5">
   <form action="/login" method="POST">
     <input type="hidden" name="_csrf" value="{{csrfToken}}" />
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" />
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username" required />
       <label for="floatingInput">Username</label>
     </div>
 
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" />
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" required />
       <label for="floatingPassword">Password</label>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <div class="form-floating mb-3">
+      <select name="role" id="role" class="form-select">
+        <option value="">What are you?</option>
+        <option value="customer">Customer</option>
+        <option value="delivery">Delivery</option>
+        <option value="commerce">Commerce</option>
+      </select>
+      <label for="role">Role</label>
+    </div>
 
-    <a href="/signup" class="w-100 btn btn-lg btn-success margin-top-2">Sign up</a>
-    <a href="/signup-commerce" class="w-100 btn btn-lg btn-info margin-top-2">Sign up for Commerce</a>
-    <a href="/" class="w-100 btn btn-lg btn-warning margin-top-2">Back</a>
+    <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Sign in</button>
+    <a href="/signup" class="btn btn-lg btn-success w-100 mb-2">Sign up</a>
+    <a href="/signup-commerce" class="btn btn-lg btn-info w-100 mb-2">Sign up for Commerce</a>
+    <a href="/reset" class="btn btn-lg btn-light w-100 mb-2">Reset password</a>
   </form>
 </main>

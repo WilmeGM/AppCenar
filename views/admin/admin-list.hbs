@@ -1,0 +1,55 @@
+{{! views/admin/admin-list.hbs }}
+
+<div class="mb-4">
+    <a class="btn btn-success" href="/save-admin">
+        + Save Admin
+    </a>
+</div>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Admin List</h1>
+
+    {{#if thereAreAdmins}}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>IdCard</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each admins}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.username}}</td>
+                <td>{{this.idCard}}</td>
+                <td>{{this.email}}</td>
+                <td>
+                    {{#if this.isActive}}
+                    <form action="/inactivate-admin" method="post" class="d-inline">
+                        <input type="hidden" name="adminId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-danger btn-sm">Inactivate</button>
+                    </form>
+                    {{else}}
+                    <form action="/activate-admin" method="post" class="d-inline">
+                        <input type="hidden" name="adminId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-success btn-sm">Activate</button>
+                    </form>
+                    {{/if}}
+                    <a href="/edit-admin/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        No customers found.
+    </div>
+    {{/if}}
+</div>
