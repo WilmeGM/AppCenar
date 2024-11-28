@@ -8,11 +8,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const authRedirectMiddleware = require("../middlewares/authRedirectMiddleware");
 const Roles = require("../enums/roles");
 
-router.get("/", (req, res) => {
-  if (!req.session.isLoggedIn) {
-    return res.redirect("/login");
-  }
-});
+router.get("/", authController.loginAuthorize);
 
 router.get("/login", authRedirectMiddleware, authController.getLogin);
 router.post("/login", authController.postLogin);

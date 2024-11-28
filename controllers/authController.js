@@ -13,6 +13,12 @@ const Admin = require("../models/admin/admins");
 const CommerceType = require("../models/admin/commerceTypes");
 const Roles = require("../enums/roles");
 
+exports.loginAuthorize = (req, res) => {
+    if (!req.session.isLoggedIn) {
+        return res.redirect("/login");
+    }
+};
+
 exports.getLogin = (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -28,12 +34,12 @@ exports.postLogin = (req, res, next) => {
     const password = req.body.password;
     const role = req.body.role;
 
-    if(!username || !password) {
+    if (!username || !password) {
         req.flash("errors", "all fields are required");
         return res.redirect("/login");
     }
 
-    let model; 
+    let model;
 
     if (role == Roles.CUSTOMER) model = Customer;
     if (role == Roles.DELIVERY) model = Delivery;
@@ -47,7 +53,7 @@ exports.postLogin = (req, res, next) => {
                 return res.redirect("/login");
             }
 
-            if(!user.isActive) {
+            if (!user.isActive) {
                 req.flash("errors", "username is inactive, check your email");
                 return res.redirect("/login");
             }
@@ -57,7 +63,7 @@ exports.postLogin = (req, res, next) => {
                     if (result) {
                         req.session.isLoggedIn = true;
                         req.session.user = user;
-                        if(!role) {
+                        if (!role) {
                             req.session.role = "admin";
                         } else {
                             req.session.role = role;
@@ -84,7 +90,7 @@ exports.postLogin = (req, res, next) => {
                 })
         }).catch(error => {
             console.log(error);
-            if(!role) {
+            if (!role) {
                 req.flash("errors", "All fields are required.");
             } else {
                 req.flash("errors", "An error has occurred while login.");
