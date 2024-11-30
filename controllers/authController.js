@@ -66,12 +66,14 @@ exports.postLogin = (req, res, next) => {
                         if (!role) {
                             req.session.role = "admin";
                         } else {
-                            req.session.role = role;
+                            req.session.role = role === "customer" ? Roles.CUSTOMER :
+                                role === "delivery" ? Roles.DELIVERY :
+                                    Roles.COMMERCE;
                         }
                         return req.session.save(error => {
                             console.log(error);
 
-                            if (role === Roles.CUSTOMER) return res.redirect("/customer-home");
+                            if (role === Roles.CUSTOMER) return res.redirect("/customer-dashboard");
                             if (role === Roles.DELIVERY) return res.redirect("/delivery-home");
                             if (role === Roles.COMMERCE) return res.redirect("/commerce-home");
                             if (!role) return res.redirect("/admin-home");

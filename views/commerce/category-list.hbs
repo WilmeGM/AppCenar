@@ -1,0 +1,45 @@
+{{! views/commerce/category-list.hbs }}
+
+<div class="mb-4">
+    <a class="btn btn-success" href="/save-category">
+        + Save Category
+    </a>
+</div>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Category List</h1>
+
+    {{#if thereAreCategories}}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Commerces count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categories}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.commercesCount}}</td>
+                <td>
+                    <form action="/delete-category" method="post" class="d-inline">
+                        <input type="hidden" name="categoryId" value="{{this.id}}" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="confirmDelete(event)">Delete</button>
+                    </form>
+                    <a href="/edit-category/{{this.id}}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        No categories found.
+    </div>
+    {{/if}}
+</div>

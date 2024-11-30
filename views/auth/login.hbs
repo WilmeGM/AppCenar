@@ -1,7 +1,6 @@
-{{! Login View --}}
+{{! views/auth/login.hbs --}}
 <main class="form-signin w-100 m-auto mt-5">
   <form action="/login" method="POST">
-    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
     <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
 
     <div class="form-floating mb-3">
@@ -10,7 +9,8 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" required />
+      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password"
+        required />
       <label for="floatingPassword">Password</label>
     </div>
 

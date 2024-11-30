@@ -1,0 +1,27 @@
+{{! views/commerce/order-details.hbs }}
+
+<h1>Order Details - {{order.commerceName}}</h1>
+<p>Status: {{order.status}}</p>
+<p>Date: {{order.date}} at {{order.time}}</p>
+<p>Total: ${{order.total}}</p>
+
+<h3>Products</h3>
+<ul>
+    {{#each order.products}}
+    <li>
+        <img src="{{this.image}}" alt="{{this.name}}" width="50">
+        {{this.name}} - ${{this.price}}
+    </li>
+    {{/each}}
+</ul>
+
+{{#if isPending}}
+<form action="/commerce-assign-delivery" method="POST">
+    <input type="hidden" name="orderId" value="{{order.id}}">
+    <button class="btn btn-success">Assign Delivery</button>
+</form>
+{{else}}
+<p>No actions available for this order.</p>
+{{/if}}
+
+<a href="/commerce-orders" class="btn btn-secondary">Back to Orders</a>

@@ -1,0 +1,30 @@
+{{! views/customer/order-details.hbs }}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Order Details</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Commerce: {{order.commerceName}}</h5>
+            <p>Status: {{order.status}}</p>
+            <p>Date: {{order.date}}</p>
+            <p>Time: {{order.time}}</p>
+            <p>Total: ${{order.total}}</p>
+        </div>
+    </div>
+
+    <h3>Products</h3>
+    <ul class="list-group mb-4">
+        {{#each order.products}}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <img src="{{this.image}}" alt="{{this.name}}" style="max-width: 50px;">
+                {{this.name}}
+            </div>
+            <span>${{this.price}}</span>
+        </li>
+        {{/each}}
+    </ul>
+
+    <a href="/my-orders" class="btn btn-warning">Back to Orders</a>
+</div>

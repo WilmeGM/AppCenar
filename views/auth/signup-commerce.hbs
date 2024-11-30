@@ -1,4 +1,4 @@
-{{! Signup Commerce View --}}
+{{! views/auth/signup-commerce.hbs }}
 <main class="form-signin w-100 m-auto mt-5">
   <form action="/signup-commerce" method="POST" enctype="multipart/form-data">
     <h1 class="h3 mb-3 fw-normal text-center">Create a Commerce Account</h1>
@@ -25,19 +25,21 @@
 
     <div class="mb-3">
       <label for="floatingOpeningTime">Opening Time</label>
-      <input type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time" required />
+      <input type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time"
+        required />
     </div>
 
     <div class="mb-3">
       <label for="floatingClosingTime">Closing Time</label>
-      <input type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time" required />
+      <input type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time"
+        required />
     </div>
 
     <div class="mb-3">
       <select class="form-control" name="typeId" id="floatingCommerceType" required>
         <option value="">Select a commerce type</option>
         {{#each commerceTypes}}
-          <option value="{{this.id}}">{{this.name}}</option>
+        <option value="{{this.id}}">{{this.name}}</option>
         {{/each}}
       </select>
     </div>
@@ -49,7 +51,8 @@
 
     <div class="mb-3">
       <label for="confirmPassword">Confirm Password</label>
-      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required />
+      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+        placeholder="Confirm Password" required />
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Create Commerce</button>

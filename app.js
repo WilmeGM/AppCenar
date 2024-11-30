@@ -24,7 +24,7 @@ const Product = require("./models/commerce/products");
 
 const Customer = require("./models/customer/customer");
 const Address = require("./models/customer/directions");
-const Favorite = require("./models/customer/directions");
+const Favorite = require("./models/customer/favorites");
 const Order = require("./models/customer/orders");
 
 const Delivery = require("./models/delivery/delivery");
@@ -165,7 +165,7 @@ Product.belongsToMany(Order, {
   as: "orders",
 });
 
-Order.hasMany(OrderProduct);
+Order.hasMany(OrderProduct, { as: "orderProducts" });
 Product.hasMany(OrderProduct);
 
 OrderProduct.belongsTo(Order);
@@ -181,9 +181,8 @@ sequelize
     createAdminSeed();
     createDefaultConfiguration();
     app.listen(5000, () => {
-      console.log("Server is running on port 5000");
+      console.log("https://localhost:5000");
     });
-  })
-  .catch((err) => {
+  }).catch((err) => {
     console.log(err);
   });

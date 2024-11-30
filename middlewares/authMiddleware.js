@@ -14,6 +14,9 @@ module.exports.isAuthenticated = (req, res, next) => {
 module.exports.hasRole = (requiredRole) => {
   return (req, res, next) => {
     if (!req.session.isLoggedIn || req.session.role !== requiredRole) {
+      console.log("Session Role:", req.session.role); // Depuración
+      console.log("Required Role:", requiredRole);
+      console.log(req.session.isLoggedIn);
       return res.status(403).render("error/403", {
         pageTitle: "Forbidden - AppCenar",
       });

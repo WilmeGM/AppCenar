@@ -1,8 +1,21 @@
-{{! Customer Dashboard View }}
+{{! views/customer/index.hbs }}
+
 <div class="container mt-5">
   <h1 class="text-center">Customer Dashboard</h1>
   <div class="row">
-    <!-- Orders Section -->
+
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5>Home</h5>
+        </div>
+        <div class="card-body">
+          <p>View commerce types and order you prefer!.</p>
+          <a href="/customer-home" class="btn btn-primary w-100">Home</a>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header bg-primary text-white">
@@ -10,27 +23,23 @@
         </div>
         <div class="card-body">
           <p>Manage your orders, track their status and see order details.</p>
-          <a href="/customer/orders" class="btn btn-primary w-100">View Orders</a>
+          <a href="/my-orders" class="btn btn-primary w-100">View Orders</a>
         </div>
       </div>
     </div>
 
-    <!-- Profile Section -->
     <div class="col-md-6 mb-4">
       <div class="card">
-        <div class="card-header bg-success text-white">
-          <h5>My Profile</h5>
+        <div class="card-header bg-info text-white">
+          <h5>My favorites</h5>
         </div>
         <div class="card-body">
-          <p>Update your personal information and manage your preferences.</p>
-          <a href="/customer/profile" class="btn btn-success w-100">View Profile</a>
+          <p>Checkout your favorites commerces.</p>
+          <a href="/my-favorites" class="btn btn-info w-100">View favorites</a>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <!-- Address Section -->
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header bg-warning text-white">
@@ -38,22 +47,26 @@
         </div>
         <div class="card-body">
           <p>Manage and update your delivery addresses.</p>
-          <a href="/customer/addresses" class="btn btn-warning w-100">Manage Addresses</a>
+          <a href="/my-addresses" class="btn btn-warning w-100">Manage Addresses</a>
         </div>
       </div>
     </div>
 
-    <!-- Payment Section -->
+  </div>
+
+  <div class="row">
+
     <div class="col-md-6 mb-4">
       <div class="card">
-        <div class="card-header bg-info text-white">
-          <h5>Payment Methods</h5>
+        <div class="card-header bg-dark text-white">
+          <h5>My Profile</h5>
         </div>
         <div class="card-body">
-          <p>Update your payment methods for quick and easy checkout.</p>
-          <a href="/customer/payment-methods" class="btn btn-info w-100">Manage Payments</a>
+          <p>Update your personal information and manage your preferences.</p>
+          <a href="/my-profile" class="btn btn-dark w-100">View Profile</a>
         </div>
       </div>
     </div>
+
   </div>
 </div>

@@ -1,0 +1,42 @@
+<main class="container">
+    <form action="/edit-product" method="post" enctype="multipart/form-data">
+        <h1 class="h3 mb-3 fw-normal">Edit Product</h1>
+
+        <input type="hidden" name="productId" value="{{product.id}}" />
+
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="{{product.name}}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" value="{{product.description}}" class="form-control"
+                required />
+        </div>
+
+        <div class="mb-3">
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" value="{{product.price}}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control" />
+            <img src="{{product.image}}" alt="{{product.name}}" width="100" class="mt-2" />
+        </div>
+
+        <div class="mb-3">
+            <label for="categoryId">Category</label>
+            <select name="categoryId" id="categoryId" class="form-control" required>
+                {{#each categories}}
+                <option value="{{this.id}}" {{#if (eq this.id ../product.categoryId)}}selected{{/if}}>{{this.name}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Save</button>
+        <a href="/product-list" class="btn btn-warning w-100 mt-2">Back</a>
+    </form>
+</main>

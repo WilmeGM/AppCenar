@@ -1,0 +1,43 @@
+{{! views/customer/my-orders }}
+
+<div class="container mt-5">
+    <h1 class="mb-4">My Orders</h1>
+
+    {{#if hasOrders}}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Commerce</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Products</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td>
+                    <img src="{{this.commerceLogo}}" alt="{{this.commerceName}} logo" style="max-width: 50px;">
+                    {{this.commerceName}}
+                </td>
+                <td>{{this.status}}</td>
+                <td>${{this.total}}</td>
+                <td>{{this.productCount}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.time}}</td>
+                <td>
+                    <a href="/my-orders/{{this.id}}" class="btn btn-info btn-sm">View Details</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-info">You have no orders yet.</div>
+    {{/if}}
+
+    <a href="/customer-dashboard" class="btn btn-warning">Back to Dashboard</a>
+</div>

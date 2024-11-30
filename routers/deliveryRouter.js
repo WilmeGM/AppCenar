@@ -12,4 +12,30 @@ router.get("/delivery-home",
     authMiddleware.hasRole(Roles.DELIVERY),
     deliveryController.index);
 
+router.get('/my-delivery-profile',
+    authMiddleware.isAuthenticated,
+    authMiddleware.hasRole(Roles.DELIVERY),
+    deliveryController.getProfile);
+
+router.post(
+    '/update-profile',
+    authMiddleware.isAuthenticated,
+    authMiddleware.hasRole(Roles.DELIVERY),
+    deliveryController.updateProfile);
+
+router.get("/delivery-assigned-orders",
+    authMiddleware.isAuthenticated,
+    authMiddleware.hasRole(Roles.DELIVERY),
+    deliveryController.getAssignedOrders);
+
+router.get("/delivery-order-details/:orderId",
+    authMiddleware.isAuthenticated,
+    authMiddleware.hasRole(Roles.DELIVERY),
+    deliveryController.getOrderDetails);
+
+router.post("/delivery-complete-order",
+    authMiddleware.isAuthenticated,
+    authMiddleware.hasRole(Roles.DELIVERY),
+    deliveryController.completeOrder);
+
 module.exports = router;

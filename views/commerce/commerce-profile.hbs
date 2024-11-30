@@ -1,0 +1,38 @@
+{{! views/commerce/commerce-profile.hbs }}
+
+<main class="form-signin w-100 m-auto mt-5">
+  <form action="/edit-commerce" method="post" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 fw-normal text-center">Your Commerce Profile</h1>
+
+    <input type="hidden" value="{{commerce.id}}">
+
+    <div class="mb-3">
+      <label for="floatingLogo">Logo</label>
+      <input type="file" class="form-control" name="image" id="floatingLogo" />
+      <img src="{{commerce.logo}}" alt="{{product.name}}" width="100" class="mt-2" />
+    </div>
+
+    <div class="mb-3">
+      <label for="floatingOpeningTime">Opening Time</label>
+      <input value="{{commerce.openingTime}}" type="time" class="form-control" name="openingTime" id="floatingOpeningTime" placeholder="Opening Time" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="floatingClosingTime">Closing Time</label>
+      <input value="{{commerce.closingTime}}" type="time" class="form-control" name="closingTime" id="floatingClosingTime" placeholder="Closing Time" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="floatingPhone">Phone</label>
+      <input value="{{commerce.phone}}" type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="floatingEmail">Email</label>
+      <input value="{{commerce.email}}" type="email" class="form-control" name="email" id="floatingEmail" placeholder="Email" required />
+    </div>    
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Update profile</button>
+    <a href="/commerce-home" class="w-100 btn btn-lg btn-warning mt-2">Back</a>
+  </form>
+</main>

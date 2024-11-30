@@ -1,0 +1,35 @@
+{{! views/commerce/orders.hbs }}
+
+<h1>Orders</h1>
+{{#if hasOrders}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Commerce</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Products</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each orders}}
+        <tr>
+            <td><img src="{{this.commerceLogo}}" alt="{{this.commerceName}} logo" width="50"></td>
+            <td>{{this.commerceName}}</td>
+            <td>{{this.status}}</td>
+            <td>${{this.total}}</td>
+            <td>{{this.productCount}}</td>
+            <td>{{this.date}} {{this.time}}</td>
+            <td>
+                <a href="/commerce-order-details/{{this.id}}" class="btn btn-primary btn-sm">Details</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>No orders found.</p>
+{{/if}}

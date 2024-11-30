@@ -1,0 +1,33 @@
+{{! views/customer/my-profile.hbs }}
+
+<main class="form-signin w-100 m-auto mt-5">
+  <form action="/update-my-profile" method="post" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 fw-normal text-center">My Profile</h1>
+
+    <input name="customerId" type="hidden" value="{{customer.id}}">
+
+    <div class="mb-3">
+      <label for="floatingLogo">Profile picture</label>
+      <input type="file" class="form-control" name="image" id="floatingLogo" />
+      <img src="{{customer.profilePicture}}" alt="{{customer.name}}" width="100" class="mt-2" />
+    </div>
+
+    <div class="mb-3">
+      <label for="name">Name</label>
+      <input value="{{customer.name}}" type="text" class="form-control" name="name" id="name" placeholder="Your Name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="lastname">Last Name</label>
+      <input value="{{customer.lastName}}" type="text" class="form-control" name="lastName" id="lastname" placeholder="Last name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="floatingPhone">Phone</label>
+      <input value="{{customer.phone}}" type="text" class="form-control" name="phone" id="floatingPhone" placeholder="Phone" required />
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Update profile</button>
+    <a href="/customer-dashboard" class="w-100 btn btn-lg btn-warning mt-2">Back</a>
+  </form>
+</main>
